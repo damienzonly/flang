@@ -9,6 +9,6 @@ int main(int argc, char** argv) {
     stream << input.rdbuf();
     std::string content = stream.str();
     Tokenizer p(content);
-    auto tokens = p.parse();
+    auto tokens = p.tokenize();
     return 0;
 }

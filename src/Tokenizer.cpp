@@ -1,7 +1,7 @@
 #pragma once
 #include "Tokenizer.h"
 
-std::vector<Token> Tokenizer::parse() {
+std::vector<Token> Tokenizer::tokenize() {
     char c;
     std::string buf;
     std::vector<Token> tokens;

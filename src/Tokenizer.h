@@ -17,7 +17,7 @@ typedef struct {
 class Tokenizer {
 public:
     Tokenizer(const std::string& content): src(content){}
-    std::vector<Token> parse();
+    std::vector<Token> tokenize();
     char consume();
     std::optional<char> peek(size_t offset = 0);
 private:
