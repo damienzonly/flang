@@ -1,7 +1,7 @@
 #pragma once
-#include "Parser.h"
+#include "Tokenizer.h"
 
-std::vector<Token> Parser::parse() {
+std::vector<Token> Tokenizer::parse() {
     char c;
     std::string buf;
     std::vector<Token> tokens;
@@ -37,12 +37,12 @@ std::vector<Token> Parser::parse() {
     return tokens;
 }
 
-std::optional<char> Parser::peek(size_t offset) {
+std::optional<char> Tokenizer::peek(size_t offset) {
     auto sum = offset + charIndex;
     if (sum >= src.length()) return {};
     return src[sum];
 }
 
-char Parser::consume() {
+char Tokenizer::consume() {
     return src[charIndex++];
 }

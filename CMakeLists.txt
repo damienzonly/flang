@@ -4,6 +4,6 @@ project(flang)
 set(CMAKE_CXX_STANDARD 20)
 
 add_executable(flang src/main.cpp
-        src/Parser.cpp
-        src/Parser.h
+        src/Tokenizer.cpp
+        src/Tokenizer.h
 )

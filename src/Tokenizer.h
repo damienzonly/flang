@@ -14,9 +14,9 @@ typedef struct {
     std::optional<std::string> value;
 } Token;
 
-class Parser {
+class Tokenizer {
 public:
-    Parser(const std::string& content): src(content){}
+    Tokenizer(const std::string& content): src(content){}
     std::vector<Token> parse();
     char consume();
     std::optional<char> peek(size_t offset = 0);
