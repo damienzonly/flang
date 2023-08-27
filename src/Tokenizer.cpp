@@ -1,5 +1,5 @@
-#pragma once
 #include "Tokenizer.h"
+#include "shared.h"
 
 std::vector<Token> Tokenizer::tokenize() {
     char c;
@@ -7,11 +7,18 @@ std::vector<Token> Tokenizer::tokenize() {
     std::vector<Token> tokens;
     while (peek().has_value()) {
         c = peek().value();
+        if (std::isspace(c)) {
+            consume();
+            continue;
+        }
         if (std::isalpha(c)) {
             while (peek().has_value() && std::isalnum(peek().value()))
                 buf.push_back(consume());
             if (buf == "exit")
                 tokens.push_back(Token{.type = TokenType::exit});
+            else {
+                die("unexpected token");
+            }
             buf.clear();
             continue;
         } else if (std::isdigit(c)) {
@@ -37,12 +44,12 @@ std::vector<Token> Tokenizer::tokenize() {
     return tokens;
 }
 
+char Tokenizer::consume() {
+    return src[charIndex++];
+}
+
 std::optional<char> Tokenizer::peek(size_t offset) {
     auto sum = offset + charIndex;
     if (sum >= src.length()) return {};
     return src[sum];
-}
-
-char Tokenizer::consume() {
-    return src[charIndex++];
 }

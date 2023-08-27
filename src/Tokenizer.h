@@ -1,5 +1,7 @@
 #pragma once
 #include <iostream>
+#include <optional>
+#include <vector>
 
 enum class TokenType {
     exit,
@@ -14,13 +16,13 @@ typedef struct {
     std::optional<std::string> value;
 } Token;
 
-class Tokenizer {
+class Tokenizer{
 public:
     Tokenizer(const std::string& content): src(content){}
     std::vector<Token> tokenize();
     char consume();
     std::optional<char> peek(size_t offset = 0);
 private:
-    size_t charIndex;
     std::string src;
+    size_t charIndex = 0;
 };

@@ -1,3 +1,4 @@
 - tokens constants
 - tokenizer class
 - hashmaps for creating Token structs faster
+- assign operator constants
