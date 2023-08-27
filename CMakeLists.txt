@@ -9,5 +9,5 @@ add_executable(flang src/main.cpp
         src/Parser.cpp
         src/shared.cpp
         src/shared.h
-)
+        src/Generator.h src/Generator.cpp)
 include_directories(libs/spdlog)
