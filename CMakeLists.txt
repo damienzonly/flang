@@ -1,8 +1,7 @@
-cmake_minimum_required(VERSION 3.26)
+cmake_minimum_required(VERSION 3.24)
 project(flang)
 
 set(CMAKE_CXX_STANDARD 20)
-
 add_executable(flang src/main.cpp
         src/Tokenizer.cpp
         src/Tokenizer.h
@@ -11,3 +10,4 @@ add_executable(flang src/main.cpp
         src/shared.cpp
         src/shared.h
 )
+include_directories(libs/spdlog)

@@ -1,6 +1,7 @@
 #include "Parser.h"
 #include "shared.h"
 #include <iostream>
+#include "spdlog/spdlog.h"
 
 NodeRoot Parser::parse() {
     NodeRoot root = {};
@@ -32,14 +33,15 @@ std::optional<NodeStatement> Parser::parseStatement() {
             die("expected token (");
         consume();
         auto expr = parseExpression();
-        if (!expr) die("expected input in exit function");
+        if (!expr.has_value())
+            die("expected input in exit function");
         next = peek();
         if (!next || next.value().type != TokenType::close_brack)
-            die("expected `)`");
+            die(spdlog::fmt_lib::format("expected {}", CLOSE_BRACK));
         consume();
         next = peek();
         if (!next || next.value().type != TokenType::semicol)
-            die("missing `;`");
+            die(spdlog::fmt_lib::format("missing {}", SEMI));
         consume();
         statement.stmVariant = NodeStatementExit{.expr = expr.value()};
     }
@@ -53,6 +55,6 @@ std::optional<NodeExpr> Parser::parseExpression() {
     auto type = t.value().type;
     if (type == TokenType::int_literal) {
         expression.exprVariant = NodeExprIntLiteral {.literal = consume()};
-    }
+    } else return {};
     return expression;
 }

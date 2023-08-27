@@ -1,6 +1,9 @@
 #pragma once
 #include "Tokenizer.h"
 #include <variant>
+#define OPEN_BRACK "("
+#define CLOSE_BRACK ")"
+#define SEMI ";"
 
 typedef struct {
     Token literal;
